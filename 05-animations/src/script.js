@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { cubeTexture } from 'three/tsl'
+import gsap from 'gsap'
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -31,20 +31,18 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 
 //Time
-let time = Date.now()
+const clock = new THREE.Clock()
 
 //Animations
 const tick = () => {
     //Time
-    const currenttime = Date.now()
-    const deltaTime = currenttime - time
-
-    time = currenttime
-
-    console.log(deltaTime)
+    const elaspedTime = clock.getElapsedTime()
+    console.log(elaspedTime)
 
     //Update objects 
-    mesh.rotation.y += 0.001 * deltaTime
+    mesh.rotation.y = elaspedTime * Math.PI * 2
+    mesh.position.y = Math.sin(elaspedTime)
+    mesh.position.x = Math.cos(elaspedTime)
 
     //Render
     renderer.render(scene, camera)
