@@ -1,4 +1,7 @@
 import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/Addons.js'
+import gsap from 'gsap'
+
 
 const scene = new THREE.Scene()
 const geometry = new THREE.BoxGeometry(1, 1, 1)
